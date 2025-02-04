@@ -25,18 +25,23 @@ const CourseDetails = () => {
           throw new Error("Si è verificato un problema");
         }
         const course = await response.json();
+
+        // Salva l'ID dell'insegnante oltre ai suoi dettagli
+        const teacherResponse = await fetch(
+          `http://localhost:3001/api/docenti/${course.teacher}`
+        );
+        if (!teacherResponse.ok)
+          throw new Error(
+            "Non è stato possibile recuperare i dettagli dell'insegnante."
+          );
+        const teacherData = await teacherResponse.json();
+
         setImage(course.image);
         setTitle(course.title);
-        setTeacher(course.teacher);
+        setTeacher({ _id: course.teacher, Name: teacherData.Name, Surname: teacherData.Surname });
         setLevel(course.level);
         setForm(course.form);
         setDescription(course.description);
-
-        // Se l'oggetto course contiene l'ID del docente, facciamo una chiamata per ottenere i dettagli
-        const teacherResponse = await fetch(`http://localhost:3001/api/docenti/${course.teacher}`);
-        if (!teacherResponse.ok) throw new Error("Non è stato possibile recuperare i dettagli dell'insegnante.");
-        const teacherData = await teacherResponse.json();
-        setTeacher({ Name: teacherData.Name, Surname: teacherData.Surname });
 
       } catch (error) {
         console.log(error);
@@ -51,7 +56,14 @@ const CourseDetails = () => {
       const response = await fetch(`http://localhost:3001/api/corsi/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ image, title, teacher, level, form, description }),
+        body: JSON.stringify({
+          image,
+          title,
+          teacher: teacher._id,
+          level,
+          form,
+          description,
+        }),
       });
       if (!response.ok) throw new Error("Si è verificato un errore");
     } catch (error) {
@@ -152,7 +164,11 @@ const CourseDetails = () => {
         <Button variant="primary" onClick={() => handleShowModal("modify")}>
           Modifica corso
         </Button>
-        <Button className="m-2" variant="danger" onClick={() => handleShowModal("delete")}>
+        <Button
+          className="m-2"
+          variant="danger"
+          onClick={() => handleShowModal("delete")}
+        >
           Cancella corso
         </Button>
       </Form>
@@ -160,17 +176,25 @@ const CourseDetails = () => {
       {/* Modale di conferma */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Conferma {modalAction === "modify" ? "Modifica" : "Cancellazione"}</Modal.Title>
+          <Modal.Title>
+            Conferma {modalAction === "modify" ? "Modifica" : "Cancellazione"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Sei sicuro di voler {modalAction === "modify" ? "modificare" : "cancellare"} questo corso?
+          Sei sicuro di voler{" "}
+          {modalAction === "modify" ? "modificare" : "cancellare"} questo corso?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Annulla
           </Button>
-          <Button variant={modalAction === "modify" ? "primary" : "danger"} onClick={handleConfirmAction}>
-            {modalAction === "modify" ? "Conferma Modifica" : "Conferma Cancellazione"}
+          <Button
+            variant={modalAction === "modify" ? "primary" : "danger"}
+            onClick={handleConfirmAction}
+          >
+            {modalAction === "modify"
+              ? "Conferma Modifica"
+              : "Conferma Cancellazione"}
           </Button>
         </Modal.Footer>
       </Modal>

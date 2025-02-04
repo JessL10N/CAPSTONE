@@ -34,7 +34,7 @@ const Courses = () => {
     <Container>
       <div className="d-flex justify-content-between">
         <h1>I nostri corsi</h1>
-        <Button>
+        <Button href="/corsi/new">
           Aggiungi corso
           <svg
             xmlns="http://www.w3.org/2000/svg"

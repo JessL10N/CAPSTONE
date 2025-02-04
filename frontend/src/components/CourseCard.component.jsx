@@ -32,14 +32,14 @@ const CourseCard = ({
             <strong>Livello:</strong> {level}
           </ListGroup.Item>
           <ListGroup.Item>
-            <strong>Insegnante:</strong>
+            <strong>Insegnante: </strong>
             {teacher ? `${teacher.Name} ${teacher.Surname}` : "Non assegnato"}
           </ListGroup.Item>
           <ListGroup.Item>
             <strong>Formato:</strong> {form}
           </ListGroup.Item>
         </ListGroup>
-        <Card.Body>
+        <Card.Body className="d-flex justify-content-between">
           <Card.Link href="/contatti">Prenota il tuo posto</Card.Link>
           <Link to={`/corsi/${_id}`}>
             <Button variant="primary">Gestisci Corso</Button>

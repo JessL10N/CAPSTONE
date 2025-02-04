@@ -8,6 +8,7 @@ import Home from './views/Home.view';
 import Courses from './views/Courses.view';
 import Footer from './components/Footer.component';
 import CourseDetails from './components/CourseDetails.component';
+import NewCourse from './views/NewCourse.view';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/corsi' element={<Courses />} />
         <Route path='/corsi/:id' element={<CourseDetails />} />
+        <Route path='/corsi/new' element={<NewCourse />} />
         <Route path='/docenti' element={<div>Chi siamo</div>} />
         <Route path='/contattaci' element={<div>Contattaci</div>} />
         <Route path='/login' element={<Login />} />
