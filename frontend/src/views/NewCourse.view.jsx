@@ -3,19 +3,19 @@ import { Form, Button, Container, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
 const NewCourse = () => {
-  const [teachers, setTeachers] = useState([]); // Stato per salvare gli insegnanti
-  const [selectedTeacher, setSelectedTeacher] = useState(""); // Stato per l'insegnante selezionato
+  const [teachers, setTeachers] = useState([]); 
+  const [selectedTeacher, setSelectedTeacher] = useState(""); 
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/docenti"); // Assicurati che l'endpoint esista
+        const response = await fetch("http://localhost:3001/api/docenti"); 
         if (!response.ok)
           throw new Error("Errore nel recupero degli insegnanti");
         const data = await response.json();
-        setTeachers(data); // Imposta la lista degli insegnanti
+        setTeachers(data); 
       } catch (error) {
         console.error(error);
       }
@@ -32,7 +32,7 @@ const NewCourse = () => {
           e.target.formImage.value ||
           "https://media.istockphoto.com/id/644015884/photo/bright-vibrant-colorful-umbrellas-parasols-row-pattern-blue-sky-background.jpg?s=612x612&w=0&k=20&c=6E31BV4QTqhI-IzKagP5K0ugbADlCKLJjINUd0CPtDY=",
         title: e.target.formTitle.value,
-        teacher: selectedTeacher, // Usa l'ID selezionato
+        teacher: selectedTeacher,
         level: e.target.formLevel.value,
         form: e.target.formForm.value,
         description: e.target.formDescription.value,
@@ -49,7 +49,7 @@ const NewCourse = () => {
       if (!response.ok) {
         throw new Error("Si è verificato un errore");
       }
-      setShowModal(true); // Mostra la modale di conferma
+      setShowModal(true);
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +58,7 @@ const NewCourse = () => {
   // Funzione per chiudere la modale e tornare alla lista dei corsi
   const handleClose = () => {
     setShowModal(false);
-    navigate("/corsi"); // Redirect alla pagina dei corsi
+    navigate("/corsi"); 
   };
 
   return (
