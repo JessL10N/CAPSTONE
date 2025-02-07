@@ -40,8 +40,18 @@ const createTeacher = async (req, res, next) => {
 const modifyTeacher = async (req, res, next) => {
   try{
       const id = req.params.id;
-      const updatedTeacher = await Teacher.findByIdAndUpdate( id, req.body);
-      res.json("Insegnante aggiornato");
+      const { Image, Name, Surname, Bio } = req.body;
+      
+    const updatedData = {
+      Image,       
+      Name,         
+      Surname,   
+      Bio,            
+    };    
+
+      const updatedTeacher = await Teacher.findByIdAndUpdate( id, updatedData, { new: true });
+
+      res.json(updatedTeacher);
   }catch(error){
       console.log(error);
       next(error);

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { Form, Button, Container } from "react-bootstrap";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -33,16 +34,39 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <Container>
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        <button type="submit">Accedi</button>
-      </form>
-      {message && <p>{message}</p>}
-      <p>Non hai un account? <Link to="/registrati">Registrati</Link></p>
-    </div>
+
+      <Form onSubmit={handleLogin}>
+        <Form.Group className="mb-3" controlId="formEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            style={{width: "40%"}}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            style={{width: "40%"}}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </Container>
   );
 };
 

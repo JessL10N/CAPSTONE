@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, ListGroup, Col, Button } from "react-bootstrap";
-import CourseDetails from "./CourseDetails.component";
 import { Link } from "react-router";
 
 const CourseCard = ({

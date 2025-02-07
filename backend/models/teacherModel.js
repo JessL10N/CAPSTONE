@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 const teacherSchema = new mongoose.Schema({
-    image: String,
-    name: String,
-    surname: String,
-    bio: String,
+    Image: String,
+    Name: String,
+    Surname: String,
+    Bio: String,
 });
 
 const Teacher = mongoose.model("teachers", teacherSchema);

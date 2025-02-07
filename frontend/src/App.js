@@ -9,6 +9,10 @@ import Courses from './views/Courses.view';
 import Footer from './components/Footer.component';
 import CourseDetails from './components/CourseDetails.component';
 import NewCourse from './views/NewCourse.view';
+import Teachers from './views/Teachers.view';
+import TeacherDetails from './components/TeacherDetails.component';
+import NewTeacher from './views/NewTeacher.view';
+import ContactForm from './components/ContactForm.component';
 
 
 function App() {
@@ -20,8 +24,10 @@ function App() {
         <Route path='/corsi' element={<Courses />} />
         <Route path='/corsi/:id' element={<CourseDetails />} />
         <Route path='/corsi/new' element={<NewCourse />} />
-        <Route path='/docenti' element={<div>Chi siamo</div>} />
-        <Route path='/contattaci' element={<div>Contattaci</div>} />
+        <Route path='/docenti' element={<Teachers />} />
+        <Route path='/docenti/:id' element={<TeacherDetails />} />
+        <Route path='/docenti/new' element={<NewTeacher />} />
+        <Route path='/contattaci' element={<ContactForm />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registrati' element={<Register />} />
       </Routes>
