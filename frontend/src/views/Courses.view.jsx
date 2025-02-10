@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Row } from "react-bootstrap";
 import CourseCard from "../components/CourseCard.component";
+import { Link } from "react-router";
 
 const Courses = () => {
+
+  const role = localStorage.getItem("role");
+
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,6 +38,7 @@ const Courses = () => {
     <Container>
       <div className="d-flex justify-content-between">
         <h1>I nostri corsi</h1>
+        {role === "admin" && (
         <Button href="/corsi/new">
           Aggiungi corso
           <svg
@@ -50,6 +55,7 @@ const Courses = () => {
             />
           </svg>
         </Button>
+        )}
       </div>
 
       {loading && <p>Caricamento in corso...</p>}

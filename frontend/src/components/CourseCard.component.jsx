@@ -11,6 +11,9 @@ const CourseCard = ({
   form,
   description,
 }) => {
+
+  const role = localStorage.getItem("role");
+
   return (
     <Col xs={12} md={4} className="mb-4">
       <Card style={{ width: "100%" }}>
@@ -40,9 +43,11 @@ const CourseCard = ({
         </ListGroup>
         <Card.Body className="d-flex justify-content-between">
           <Card.Link href="/contatti">Prenota il tuo posto</Card.Link>
+          {role === "admin" && (
           <Link to={`/corsi/${_id}`}>
             <Button variant="primary">Gestisci Corso</Button>
           </Link>
+          )}
         </Card.Body>
       </Card>
     </Col>

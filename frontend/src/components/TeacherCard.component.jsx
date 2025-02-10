@@ -4,6 +4,8 @@ import { Link } from "react-router";
 
 const TeacherCard = ({ _id, image, name, surname, bio, Image, Name, Surname, Bio }) => {
 
+  const role = localStorage.getItem("role");
+
   return (
     <Col xs={12} md={4} className="mb-4">
       <Card style={{ width: "100%", height: "800px" }}>
@@ -19,11 +21,15 @@ const TeacherCard = ({ _id, image, name, surname, bio, Image, Name, Surname, Bio
           </Card.Title>
           <Card.Text>{bio || Bio || "Nessuna descrizione disponibile."}</Card.Text>
         </Card.Body>
-        <Link to={`/docenti/${_id}`}>
-        <div className="d-flex justify-content-center">
-          <Button className="mb-5" variant="primary">Gestisci insegnante</Button>
-        </div>
-        </Link>
+        {role === "admin" && (
+          <Link to={`/docenti/${_id}`}>
+            <div className="d-flex justify-content-center">
+              <Button className="mb-5" variant="primary">
+                Gestisci insegnante
+              </Button>
+            </div>
+          </Link>
+        )}
       </Card>
     </Col>
   );

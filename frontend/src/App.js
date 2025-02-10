@@ -12,7 +12,7 @@ import NewCourse from './views/NewCourse.view';
 import Teachers from './views/Teachers.view';
 import TeacherDetails from './components/TeacherDetails.component';
 import NewTeacher from './views/NewTeacher.view';
-import ContactForm from './components/ContactForm.component';
+import ContactForm from './views/ContactForm.view';
 
 
 function App() {

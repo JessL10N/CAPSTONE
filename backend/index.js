@@ -1,4 +1,5 @@
 import express from "express";
+import dotenv from "dotenv";
 import cors from "cors";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -6,8 +7,11 @@ import connectDB from "./config/db.js";
 import { router as teacherRouter } from "./routes/teacherRoutes.js";
 import { router as courseRouter } from "./routes/courseRoutes.js";
 import { router as testimonialRouter } from "./routes/testimonialRoutes.js"
+import { router as contactRouter } from "./routes/contactRoutes.js";
 import User from "./models/userModel.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 
+dotenv.config();
 const app = express();
 
 app.use(express.json());
@@ -18,6 +22,9 @@ connectDB();
 app.use("/api/docenti", teacherRouter);
 app.use("/api/corsi", courseRouter);
 app.use("/api/testimonials", testimonialRouter);
+app.use("/api/contattaci", contactRouter);
+app.use("/api", uploadRoutes); // ora la route di upload sarà disponibile su: POST http://localhost:3001/api/upload
+
 
 // chiave segreta per JWT
 const JWT_SECRET = process.env.JWT_SECRET || "supersegreto";
@@ -44,18 +51,18 @@ app.post("/api/login", async (req, res) => {
 });
 
 // **Middleware per proteggere le route**
-const authenticateJWT = (req, res, next) => {
-  const token = req.header("Authorization")?.split(" ")[1];
-  if (!token) return res.status(403).json({ message: "Token mancante" });
+// const authenticateJWT = (req, res, next) => {
+//   const token = req.header("Authorization")?.split(" ")[1];
+//   if (!token) return res.status(403).json({ message: "Token mancante" });
 
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    res.status(403).json({ message: "Token non valido" });
-  }
-};
+//   try {
+//     const decoded = jwt.verify(token, JWT_SECRET);
+//     req.user = decoded;
+//     next();
+//   } catch (err) {
+//     res.status(403).json({ message: "Token non valido" });
+//   }
+// };
 
 // **Esempio di route protetta**
 /*
@@ -98,6 +105,7 @@ app.post("/api/register", async (req, res) => {
     res.status(500).json({ message: "Errore durante la registrazione." });
   }
 });
+
 
 const port = 3001;
 

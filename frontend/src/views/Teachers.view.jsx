@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Row } from "react-bootstrap";
 import TeacherCard from "../components/TeacherCard.component";
+import { Link } from "react-router";
 
 const Teachers = () => {
+  const role = localStorage.getItem("role");
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,6 +37,7 @@ const Teachers = () => {
     <Container>
       <div className="d-flex justify-content-between">
         <h1>Vieni a conoscere i nostri insegnanti...</h1>
+        {role === "admin" && (
         <Button href="/docenti/new">
           Aggiungi insegnante
           <svg
@@ -51,6 +54,7 @@ const Teachers = () => {
             />
           </svg>
         </Button>
+        )}
       </div>
 
       {loading && <p>Caricamento in corso...</p>}
