@@ -82,7 +82,7 @@ const School = () => {
         <div className="mt-5">
         <h3>Iscriviti Ora e Inizia il Tuo Percorso di Benessere</h3>
         <p>
-          Se desideri ritrovare l/’equilibrio, migliorare la tua salute e vivere
+          Se desideri ritrovare l’equilibrio, migliorare la tua salute e vivere
           con maggiore serenità, lo yoga è la scelta perfetta per te.{" "}
           <span>Unisciti a noi</span> e scopri il potere trasformativo di questa
           pratica!

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router";
 import { Form, Button, Container } from "react-bootstrap";
 
 const Login = () => {
@@ -25,16 +24,16 @@ const Login = () => {
 
       const data = await response.json();
       localStorage.setItem("token", data.token);
-      localStorage.setItem("role", data.role); //salva il ruolo
+      localStorage.setItem("role", data.role);
       setMessage("Login riuscito!");
-      window.location.href = "/"; // Reindirizza alla home
+      window.location.href = "/";
     } catch (error) {
       setMessage(error.message);
     }
   };
 
   return (
-    <Container>
+    <Container className="d-flex flex-column min-vh-100 mt-5">
       <h2>Login</h2>
 
       <Form onSubmit={handleLogin}>

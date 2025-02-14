@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Row } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import CourseCard from "../components/CourseCard.component";
-import { Link } from "react-router";
 
 const Courses = () => {
 
@@ -36,10 +35,10 @@ const Courses = () => {
 
   return (
     <Container>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between m-5">
         <h1>I nostri corsi</h1>
         {role === "admin" && (
-        <Button href="/corsi/new">
+        <Button className="m-2" href="/corsi/new">
           Aggiungi corso
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -62,13 +61,17 @@ const Courses = () => {
       {error && <p>Errore: {error}</p>}
 
       {!loading && !error && (
-        <Row>
-          {courses.length > 0 ? (
-            courses.map((course) => <CourseCard key={course._id} {...course} />)
-          ) : (
-            <p>Nessun corso disponibile al momento.</p>
-          )}
-        </Row>
+        <Row className="g-3">
+        {courses.length > 0 ? (
+          courses.map((course) => (
+            <Col key={course._id} xs={12} md={6} lg={4}>
+              <CourseCard {...course} />
+            </Col>
+          ))
+        ) : (
+          <p>Nessun corso disponibile al momento.</p>
+        )}
+      </Row>
       )}
     </Container>
   );
