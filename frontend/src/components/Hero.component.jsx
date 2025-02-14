@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Hero = () => {
   return (
@@ -7,7 +7,7 @@ const Hero = () => {
         <div className="container hero-content">
             <h1 className="display-4 fw-bold">Benvenuto in ZenLife</h1>
             <p className="lead">Trova equilibrio, pace e benessere con noi.</p>
-            <a href="#contatti" className="btn btn-light btn-lg fw-bold">Scopri i nostri corsi</a>
+            <a href="/corsi" className="btn btn-light btn-lg fw-bold">Scopri i nostri corsi</a>
         </div>
     </section>
   )

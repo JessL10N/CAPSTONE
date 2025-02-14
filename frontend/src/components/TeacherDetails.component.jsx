@@ -40,6 +40,29 @@ const TeacherDetails = () => {
     fetchTeacher();
   }, [id, redirect]);
 
+  // Funzione per gestire l'upload dell'immagine
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await fetch("http://localhost:3001/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error("Errore durante l'upload");
+      }
+      const data = await response.json();
+      // Aggiorna lo stato dell'immagine con l'URL restituito
+      setImage(data.url);
+    } catch (error) {
+      console.error("Upload error:", error);
+    }
+  };
+
   const modifyTeacher = async () => {
     try {
       const response = await fetch(`http://localhost:3001/api/docenti/${id}`, {
@@ -109,14 +132,19 @@ const TeacherDetails = () => {
 
       <h1>Gestisci insegnante</h1>
       <Form>
+        {/* Campo per l'upload dell'immagine */}
         <Form.Group className="mb-3" controlId="formImage">
           <Form.Label>Immagine</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Inserisci nuova immagine"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
           />
+          {image && (
+            <div className="mt-2">
+              <img src={image} alt="Anteprima" style={{ width: "200px" }} />
+            </div>
+          )}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formName">
@@ -160,6 +188,9 @@ const TeacherDetails = () => {
           onClick={() => handleShowModal("delete")}
         >
           Cancella insegnante
+        </Button>
+        <Button variant="secondary" onClick={() => redirect("/docenti")}>
+          Annulla
         </Button>
       </Form>
 

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Form, Button, Container, Modal } from "react-bootstrap";
+import { Form, Button, Container, Modal, Alert } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router";
 
 const CourseDetails = () => {
+
   const { id } = useParams();
   const redirect = useNavigate();
 
@@ -15,6 +16,7 @@ const CourseDetails = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [modalAction, setModalAction] = useState(""); // "modify" o "delete"
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -38,11 +40,14 @@ const CourseDetails = () => {
 
         setImage(course.image);
         setTitle(course.title);
-        setTeacher({ _id: course.teacher, Name: teacherData.Name, Surname: teacherData.Surname });
+        setTeacher({
+          _id: course.teacher,
+          Name: teacherData.Name,
+          Surname: teacherData.Surname,
+        });
         setLevel(course.level);
         setForm(course.form);
         setDescription(course.description);
-
       } catch (error) {
         console.log(error);
       }
@@ -50,6 +55,29 @@ const CourseDetails = () => {
 
     fetchCourse();
   }, [id, redirect]);
+
+  // Funzione per gestire l'upload dell'immagine
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await fetch("http://localhost:3001/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error("Errore durante l'upload");
+      }
+      const data = await response.json();
+      // Aggiorna lo stato dell'immagine con l'URL restituito
+      setImage(data.url);
+    } catch (error) {
+      console.error("Upload error:", error);
+    }
+  };
 
   const modifyCourse = async () => {
     try {
@@ -66,6 +94,14 @@ const CourseDetails = () => {
         }),
       });
       if (!response.ok) throw new Error("Si è verificato un errore");
+
+      setSuccessMessage("Corso modificato con successo!");
+
+      // Dopo 2 secondi, reindirizza alla pagina dei corsi
+      setTimeout(() => {
+        redirect("/corsi");
+      }, 2000);
+
     } catch (error) {
       console.log(error);
     }
@@ -99,16 +135,24 @@ const CourseDetails = () => {
 
   return (
     <Container>
+
+      {successMessage && <Alert variant="success">{successMessage}</Alert>}
+
       <h1>Gestisci corso</h1>
       <Form>
+        {/* Campo per l'upload dell'immagine */}
         <Form.Group className="mb-3" controlId="formImage">
           <Form.Label>Immagine</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Inserisci nuova immagine"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
           />
+          {image && (
+            <div className="mt-2">
+              <img src={image} alt="Anteprima" style={{ width: "200px" }} />
+            </div>
+          )}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formTitle">
@@ -121,13 +165,27 @@ const CourseDetails = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formTeacher">
-          <Form.Label>Insegnante</Form.Label>
+        <Form.Group className="mb-3" controlId="formTeacherName">
+          <Form.Label>Nome Insegnante</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Inserisci insegnante"
-            value={`${teacher.Name} ${teacher.Surname}`} // Mostra nome e cognome
+            placeholder="Inserisci il nome"
+            value={teacher.Name}
             onChange={(e) => setTeacher({ ...teacher, Name: e.target.value })}
+            disabled
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formTeacherSurname">
+          <Form.Label>Cognome Insegnante</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci il cognome"
+            value={teacher.Surname}
+            onChange={(e) =>
+              setTeacher({ ...teacher, Surname: e.target.value })
+            }
+            disabled
           />
         </Form.Group>
 
@@ -170,6 +228,9 @@ const CourseDetails = () => {
           onClick={() => handleShowModal("delete")}
         >
           Cancella corso
+        </Button>
+        <Button variant="secondary" onClick={() => redirect("/corsi")}>
+          Annulla
         </Button>
       </Form>
 

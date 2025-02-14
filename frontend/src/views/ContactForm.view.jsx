@@ -55,8 +55,8 @@ const ContactForm = () => {
   };
 
   return (
-    <Container className="mt-5">
-      <h1>Contattaci</h1>
+    <Container className="d-flex flex-column min-vh-100 mt-5 align-items-center">
+      <h1 className="mb-5">Contattaci</h1>
 
       {submittedMessage && (
         <Alert variant="success" onClose={() => setSubmittedMessage("")} dismissible>
@@ -71,7 +71,7 @@ const ContactForm = () => {
       )}
 
       {!submittedMessage && (
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form className="w-75" noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group controlId="contactFormName" className="mb-3">
             <Form.Label>Nome</Form.Label>
             <Form.Control

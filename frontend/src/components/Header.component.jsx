@@ -28,14 +28,13 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/corsi">Corsi</Nav.Link>
-            <Nav.Link href="/docenti">Chi siamo</Nav.Link>
-            <Nav.Link href="/contattaci">Contattaci</Nav.Link>
+            <Nav.Link href="/corsi" className="m-auto">Corsi</Nav.Link>
+            <Nav.Link href="/docenti" className="m-auto">Chi siamo</Nav.Link>
+            <Nav.Link href="/contattaci" className="m-auto">Contattaci</Nav.Link>
             {/* Se l'utente è loggato, mostra il bottone di logout */}
             {isLoggedIn ? (
               <Nav.Link>
-                <Button variant="outline-danger" onClick={handleLogout}>
+                <Button variant="outline-danger" onClick={handleLogout} className="align-self-end">
                   Logout
                 </Button>
               </Nav.Link>

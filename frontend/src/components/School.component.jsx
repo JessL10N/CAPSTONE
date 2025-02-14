@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router";
 
 const School = () => {
   return (
@@ -87,7 +88,7 @@ const School = () => {
           pratica!
         </p>
         <p className="fw-bold">
-          Prenota la tua prima lezione e inizia oggi stesso!{" "}
+          <Link to={`/contattaci`} className="text-decoration-none">Contattaci</Link> subito per prenotare la tua prima lezione e iniziare oggi stesso!{" "}
         </p>
         </div>
       </section>

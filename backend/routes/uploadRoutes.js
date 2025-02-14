@@ -10,9 +10,9 @@ router.post("/upload", upload.single("image"), (req, res) => {
       return res.status(400).json({ error: "Nessun file inviato." });
     }
   
-    // Usa upload_stream per caricare l'immagine direttamente da un buffer
+    // Carica l'immagine su Cloudinary usando il buffer
     const uploadStream = cloudinary.uploader.upload_stream(
-      { folder: "nome_cartella_opzionale" }, // Opzionale: specifica una cartella su Cloudinary
+      { folder: "capstone" }, // Opzionale: specifica una cartella su Cloudinary
       (error, result) => {
         if (error) {
           console.error("Errore durante l'upload su Cloudinary:", error);
