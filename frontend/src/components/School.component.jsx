@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Image } from "react-bootstrap";
 import { Link } from "react-router";
 
 const School = () => {
@@ -95,9 +95,8 @@ const School = () => {
       </Col>
       <Col sm={5}>
       <aside>
-        <img className="rounded"
+        <Image className="rounded fluid shadow m-5 rounded"
           src="https://images.unsplash.com/photo-1444312645910-ffa973656eba?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fHlvZ2F8ZW58MHx8MHx8fDA%3D"
-          fluid = "true"
           alt="pietre in equilibrio"
         />
       </aside>

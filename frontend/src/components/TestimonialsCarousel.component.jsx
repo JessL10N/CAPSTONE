@@ -57,8 +57,12 @@ const TestimonialsCarousel = () => {
                   key={testimonial._id}
                   className={itemsPerSlide === 1 ? "mx-auto" : ""}
                   style={{
-                    flex: itemsPerSlide === 1 ? "0 0 auto" : `0 0 ${100 / itemsPerSlide}%`,
-                    maxWidth: itemsPerSlide === 1 ? "80%" : `${100 / itemsPerSlide}%`,
+                    flex:
+                      itemsPerSlide === 1
+                        ? "0 0 auto"
+                        : `0 0 ${100 / itemsPerSlide}%`,
+                    maxWidth:
+                      itemsPerSlide === 1 ? "80%" : `${100 / itemsPerSlide}%`,
                     padding: itemsPerSlide === 1 ? "0" : "0 10px",
                   }}
                 >
@@ -76,7 +80,8 @@ const TestimonialsCarousel = () => {
                       style={{
                         height: "200px",
                         overflow: "hidden",
-                        backgroundColor: itemsPerSlide === 1 ? "black" : "transparent",
+                        backgroundColor:
+                          itemsPerSlide === 1 ? "black" : "transparent",
                       }}
                     >
                       <img
