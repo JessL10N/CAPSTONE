@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import TeacherCard from "../components/TeacherCard.component";
+import "../Style/generalStyle.css";
 
 const Teachers = () => {
   const role = localStorage.getItem("role");
@@ -35,12 +36,13 @@ const Teachers = () => {
   }, []);
 
   return (
-    <Container className="m-5">
+    <Container fluid className="background-page pb-3">
       {/* Su schermi piccoli: flex-column, su medi e superiori: flex-row */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-center m-5">
         <h1>Vieni a conoscere i nostri insegnanti...</h1>
         {role === "admin" && (
           <Button
+            variant="secondary"
             className="m-2 ps-2 pe-2 d-flex mt-3 mt-md-0 align-self-start align-self-md-center"
             href="/docenti/new"
           >
@@ -66,7 +68,7 @@ const Teachers = () => {
       {error && <p>Errore: {error}</p>}
 
       {!loading && !error && (
-        <Row className="g-3">
+        <Row className="g-3 m-3">
           {teachers.length > 0 ? (
             teachers.map((teacher) => (
               <Col key={teacher._id} xs={12} md={6} lg={4}>

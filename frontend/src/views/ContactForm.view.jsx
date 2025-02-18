@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import "../Style/generalStyle.css"
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -55,7 +56,7 @@ const ContactForm = () => {
   };
 
   return (
-    <Container className="d-flex flex-column min-vh-100 mt-5 align-items-center">
+    <Container fluid className="d-flex flex-column min-vh-100 p-5 align-items-center background-page">
       <h1 className="mb-5">Contattaci</h1>
 
       {submittedMessage && (
@@ -142,7 +143,7 @@ const ContactForm = () => {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="secondary" type="submit">
             Invia
           </Button>
         </Form>

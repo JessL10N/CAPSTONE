@@ -1,26 +1,50 @@
+/*COURSE-CARD*/
+
 @media (min-width: 768px) {
     .course-card {
       height: 600px;
     }
     
-    /* Se vuoi che il contenuto non trabocchi, puoi aggiungere ad esempio: */
     .course-card .card-body {
       overflow: hidden;
     }
   }
 
+/*TEACHER CARD*/
+
+  .teacher-card {
+    height: 800px;
+  }
+
   .teacher-card-img {
     width: 100%;
-    height: 400px;
+    height: 400px; /* Default per schermi grandi */
     object-fit: cover;
-    object-position: top;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
   }
   
-  /* Su schermi piccoli (max-width: 576px) riduci l'altezza */
-  @media (max-width: 767px) {
+  @media (max-width: 992px) {  /* Schermi medi */
+    .teacher-card {
+      height: 840px;
+    }
     .teacher-card-img {
-      height: 600px; /* Puoi modificare questo valore a seconda delle necessità */
+      height: 508px;
     }
   }
+  
+  @media (max-width: 768px) {  /* Schermi piccoli */
+    .teacher-card {
+      height: 820px;
+    }
+    .teacher-card-img {
+      height: 580px;
+    }
+  }
+
+  @media (max-width: 576px) {  /* Schermi xs */
+    .teacher-card {
+      height: 780px;
+    }
+    .teacher-card-img {
+      height: 520px;
+    }
+  } 

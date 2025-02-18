@@ -3,19 +3,20 @@ import { Form, Button, Container, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
 const NewCourse = () => {
-  const [teachers, setTeachers] = useState([]); 
-  const [selectedTeacher, setSelectedTeacher] = useState(""); 
+  const [teachers, setTeachers] = useState([]);
+  const [selectedTeacher, setSelectedTeacher] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [image, setImage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/docenti"); 
+        const response = await fetch("http://localhost:3001/api/docenti");
         if (!response.ok)
           throw new Error("Errore nel recupero degli insegnanti");
         const data = await response.json();
-        setTeachers(data); 
+        setTeachers(data);
       } catch (error) {
         console.error(error);
       }
@@ -24,12 +25,34 @@ const NewCourse = () => {
     fetchTeachers();
   }, []);
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await fetch("http://localhost:3001/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error("Errore durante l'upload");
+      }
+      const data = await response.json();
+      // Aggiorna lo stato dell'immagine con l'URL restituito dal server
+      setImage(data.url);
+    } catch (error) {
+      console.error("Upload error:", error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const newCourse = {
         image:
-          e.target.formImage.value ||
+          image ||
           "https://media.istockphoto.com/id/644015884/photo/bright-vibrant-colorful-umbrellas-parasols-row-pattern-blue-sky-background.jpg?s=612x612&w=0&k=20&c=6E31BV4QTqhI-IzKagP5K0ugbADlCKLJjINUd0CPtDY=",
         title: e.target.formTitle.value,
         teacher: selectedTeacher,
@@ -58,26 +81,36 @@ const NewCourse = () => {
   // Funzione per chiudere la modale e tornare alla lista dei corsi
   const handleClose = () => {
     setShowModal(false);
-    navigate("/corsi"); 
+    navigate("/corsi");
   };
 
   return (
-    <Container>
-      <h1>Crea un nuovo corso</h1>
+    <Container fluid className="p-5">
+      <h1 className="m-5">Crea un nuovo corso</h1>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formImage">
-          <Form.Label>Immagine</Form.Label>
-          <Form.Control type="text" placeholder="Inserisci immagine" />
+        {/* Campo per l'upload dell'immagine */}
+        <Form.Group className="m-3" controlId="formImage">
+          <Form.Label className="fw-semibold">Immagine</Form.Label>
+          <Form.Control
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
+          {image && (
+            <div className="mt-2">
+              <img src={image} alt="Anteprima" style={{ width: "200px" }} />
+            </div>
+          )}
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formTitle">
-          <Form.Label>Titolo</Form.Label>
+        <Form.Group className="m-3" controlId="formTitle">
+          <Form.Label className="fw-semibold">Titolo</Form.Label>
           <Form.Control type="text" placeholder="Inserisci titolo" />
         </Form.Group>
 
         {/* Dropdown per selezionare un insegnante */}
-        <Form.Group className="mb-3" controlId="formTeacher">
-          <Form.Label>Insegnante</Form.Label>
+        <Form.Group className="m-3" controlId="formTeacher">
+          <Form.Label className="fw-semibold">Insegnante</Form.Label>
           <Form.Select
             onChange={(e) => setSelectedTeacher(e.target.value)}
             required
@@ -91,22 +124,22 @@ const NewCourse = () => {
           </Form.Select>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formLevel">
-          <Form.Label>Livello</Form.Label>
+        <Form.Group className="m-3" controlId="formLevel">
+          <Form.Label className="fw-semibold">Livello</Form.Label>
           <Form.Control type="text" placeholder="Inserisci livello" />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formForm">
-          <Form.Label>Modalità</Form.Label>
+        <Form.Group className="m-3" controlId="formForm">
+          <Form.Label className="fw-semibold">Modalità</Form.Label>
           <Form.Control type="text" placeholder="Inserisci modalità" />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formDescription">
-          <Form.Label>Descrizione</Form.Label>
+        <Form.Group className="m-3" controlId="formDescription">
+          <Form.Label className="fw-semibold">Descrizione</Form.Label>
           <Form.Control type="text" placeholder="Inserisci descrizione" />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button className="m-3" variant="primary" type="submit">
           Crea corso
         </Button>
       </Form>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
+import "../Style/generalStyle.css"
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -33,12 +34,12 @@ const Login = () => {
   };
 
   return (
-    <Container className="d-flex flex-column min-vh-100 mt-5">
-      <h2>Login</h2>
+    <Container fluid className="d-flex flex-column min-vh-100 background-page p-5">
+      <h2 className="ms-0 m-5">Login</h2>
 
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Indirizzo e-mail</Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter email"
@@ -61,7 +62,7 @@ const Login = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="secondary" type="submit" className="mt-3">
           Submit
         </Button>
       </Form>

@@ -17,30 +17,31 @@ const TeacherCard = ({
   const role = localStorage.getItem("role");
 
   return (
-    <Card style={{ width: "100%", height: "800px" }}>
+    <Card className="teacher-card d-flex flex-column" style={{ width: "100%"}}>
       <Card.Img
+        fluid
         className="teacher-card-img"
         variant="top"
         src={image || Image || "https://via.placeholder.com/150"} // Evita immagini mancanti
         alt={`${name} ${surname}`}
       />
-      <Card.Body className="mt-3">
+      <Card.Body className="d-flex flex-column flex-grow-1">
         <Card.Title>
           {name || Name} {surname || Surname}
         </Card.Title>
-        <Card.Text>
+        <Card.Text className="flex-grow-1">
           {bio || Bio || "Nessuna descrizione disponibile."}
         </Card.Text>
+        {role === "admin" && (
+          <Link className="text-decoration-none mt-auto" to={`/docenti/${_id}`}>
+            <div className="d-flex justify-content-center">
+              <Button variant="secondary">
+                Gestisci insegnante
+              </Button>
+            </div>
+          </Link>
+        )}
       </Card.Body>
-      {role === "admin" && (
-        <Link to={`/docenti/${_id}`}>
-          <div className="d-flex justify-content-center">
-            <Button className="mb-5" variant="primary">
-              Gestisci insegnante
-            </Button>
-          </div>
-        </Link>
-      )}
     </Card>
   );
 };

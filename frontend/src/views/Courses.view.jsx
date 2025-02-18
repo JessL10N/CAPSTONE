@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import CourseCard from "../components/CourseCard.component";
+import "../Style/generalStyle.css"
 
 const Courses = () => {
 
@@ -34,11 +35,11 @@ const Courses = () => {
   }, []);
 
   return (
-    <Container>
+    <Container fluid className="background-page pb-3">
       <div className="d-flex justify-content-between m-5">
         <h1>I nostri corsi</h1>
         {role === "admin" && (
-        <Button className="m-2" href="/corsi/new">
+        <Button variant="secondary" className="m-2" href="/corsi/new">
           Aggiungi corso
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +62,7 @@ const Courses = () => {
       {error && <p>Errore: {error}</p>}
 
       {!loading && !error && (
-        <Row className="g-3">
+        <Row className="m-3 g-3">
         {courses.length > 0 ? (
           courses.map((course) => (
             <Col key={course._id} xs={12} md={6} lg={4}>

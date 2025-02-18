@@ -15,7 +15,7 @@ const CourseCard = ({
   const role = localStorage.getItem("role");
 
   return (
-      <Card className="card course-card" style={{ width: "100%" }}>
+      <Card className="course-card" style={{ width: "100%" }}>
         <Card.Img
           variant="top"
           src={image}
@@ -47,7 +47,7 @@ const CourseCard = ({
           <Card.Link href="/contattaci">Prenota il tuo posto</Card.Link>
           {role === "admin" && (
             <Link to={`/corsi/${_id}`}>
-              <Button variant="primary">Gestisci Corso</Button>
+              <Button variant="secondary">Gestisci Corso</Button>
             </Link>
           )}
         </Card.Body>
