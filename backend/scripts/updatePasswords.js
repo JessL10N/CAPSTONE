@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGO_URI, {
   
     for (let user of users) {
       if (!user.password) {
-        const randomPassword = Math.random().toString(36).slice(-8); // Genera una password casuale
+        const randomPassword = Math.random().toString(36).slice(-8); // password casuale
         const hashedPassword = await bcrypt.hash(randomPassword, 10); // Cripta la password
         user.password = hashedPassword;
         await user.save();

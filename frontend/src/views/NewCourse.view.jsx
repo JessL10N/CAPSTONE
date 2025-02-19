@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Form, Button, Container, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
+const apiUrl = process.env.REACT_APP_API_URI
+
 const NewCourse = () => {
   const [teachers, setTeachers] = useState([]);
   const [selectedTeacher, setSelectedTeacher] = useState("");
@@ -12,7 +14,7 @@ const NewCourse = () => {
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/docenti");
+        const response = await fetch(`${apiUrl}/docenti`);
         if (!response.ok)
           throw new Error("Errore nel recupero degli insegnanti");
         const data = await response.json();
@@ -32,7 +34,7 @@ const NewCourse = () => {
     formData.append("image", file);
 
     try {
-      const response = await fetch("http://localhost:3001/api/upload", {
+      const response = await fetch(`${apiUrl}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -40,7 +42,6 @@ const NewCourse = () => {
         throw new Error("Errore durante l'upload");
       }
       const data = await response.json();
-      // Aggiorna lo stato dell'immagine con l'URL restituito dal server
       setImage(data.url);
     } catch (error) {
       console.error("Upload error:", error);
@@ -61,7 +62,7 @@ const NewCourse = () => {
         description: e.target.formDescription.value,
       };
 
-      const response = await fetch("http://localhost:3001/api/corsi/new", {
+      const response = await fetch(`${apiUrl}/corsi/new`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +79,6 @@ const NewCourse = () => {
     }
   };
 
-  // Funzione per chiudere la modale e tornare alla lista dei corsi
   const handleClose = () => {
     setShowModal(false);
     navigate("/corsi");
@@ -88,6 +88,7 @@ const NewCourse = () => {
     <Container fluid className="p-5">
       <h1 className="m-5">Crea un nuovo corso</h1>
       <Form onSubmit={handleSubmit}>
+        
         {/* Campo per l'upload dell'immagine */}
         <Form.Group className="m-3" controlId="formImage">
           <Form.Label className="fw-semibold">Immagine</Form.Label>

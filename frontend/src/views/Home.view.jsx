@@ -7,7 +7,6 @@ import TestimonialsCarousel from "../components/TestimonialsCarousel.component";
 
 const Home = () => {
   return (
-    //HERO SECTION
     <>
     <Hero />
     <School />

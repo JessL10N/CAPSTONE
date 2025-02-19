@@ -3,6 +3,8 @@ import { Container, Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import "../Style/generalStyle.css"
 
+const apiUrl = process.env.REACT_APP_API_URI
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -29,7 +31,7 @@ const ContactForm = () => {
       e.stopPropagation();
     } else {
       try {
-        const response = await fetch("http://localhost:3001/api/contattaci", {
+        const response = await fetch(`${apiUrl}/contattaci`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
@@ -83,7 +85,7 @@ const ContactForm = () => {
           onSubmit={handleSubmit}
         >
           <Form.Group controlId="contactFormName" className="mb-3">
-            <Form.Label>Nome</Form.Label>
+            <Form.Label className="fw-semibold">Nome</Form.Label>
             <Form.Control
               required
               type="text"
@@ -98,7 +100,7 @@ const ContactForm = () => {
           </Form.Group>
 
           <Form.Group controlId="contactFormEmail" className="mb-3">
-            <Form.Label>Email</Form.Label>
+            <Form.Label className="fw-semibold">Email</Form.Label>
             <Form.Control
               required
               type="email"
@@ -113,7 +115,7 @@ const ContactForm = () => {
           </Form.Group>
 
           <Form.Group controlId="contactFormSubject" className="mb-3">
-            <Form.Label>Oggetto</Form.Label>
+            <Form.Label className="fw-semibold">Oggetto</Form.Label>
             <Form.Control
               required
               type="text"
@@ -128,7 +130,7 @@ const ContactForm = () => {
           </Form.Group>
 
           <Form.Group controlId="contactFormMessage" className="mb-3">
-            <Form.Label>Messaggio</Form.Label>
+            <Form.Label className="fw-semibold">Messaggio</Form.Label>
             <Form.Control
               required
               as="textarea"

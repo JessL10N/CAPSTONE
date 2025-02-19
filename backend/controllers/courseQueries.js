@@ -101,33 +101,6 @@ const modifyCourse = async (req, res, next) => {
   }
 };
 
-
-// const modifyCourse = async (req, res, next) => {
-//   try {
-//     const { teacher, ...rest } = req.body;
-
-//     const updatedCourse = await Course.findByIdAndUpdate(
-//       req.params.id,
-//       { ...rest, teacher: new mongoose.Types.ObjectId(teacher) }, // Assicura che teacher sia un ObjectId
-//       { new: true }
-//     );
-
-//     res.status(200).json(updatedCourse);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//     next(error);
-//   }
-// };
-//   try {
-//     const id = req.params.id;
-//     const updatedCourse = await Course.findByIdAndUpdate(id, req.body);
-//     res.json("Corso aggiornato");
-//   } catch (error) {
-//     console.log(error);
-//     next(error);
-//   }
-// };
-
 const deleteCourse = async (req, res, next) => {
   try {
     const id = req.params.id;

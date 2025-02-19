@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import "../Style/courseCard.css";
+import "../Style/cards.css";
 import { Link } from "react-router";
 
 const TeacherCard = ({

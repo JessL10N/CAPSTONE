@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Form, Button, Container, Modal, Alert } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router";
 
+const apiUrl = process.env.REACT_APP_API_URI
+
 const TeacherDetails = () => {
   const { id } = useParams();
   const redirect = useNavigate();
@@ -17,7 +19,7 @@ const TeacherDetails = () => {
   useEffect(() => {
     const fetchTeacher = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/docenti/${id}`);
+        const response = await fetch(`${apiUrl}/docenti/${id}`);
         if (!response.ok) {
           redirect("/404");
           throw new Error("Si è verificato un problema");
@@ -48,7 +50,7 @@ const TeacherDetails = () => {
     formData.append("image", file);
 
     try {
-      const response = await fetch("http://localhost:3001/api/upload", {
+      const response = await fetch(`${apiUrl}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -56,7 +58,6 @@ const TeacherDetails = () => {
         throw new Error("Errore durante l'upload");
       }
       const data = await response.json();
-      // Aggiorna lo stato dell'immagine con l'URL restituito
       setImage(data.url);
     } catch (error) {
       console.error("Upload error:", error);
@@ -65,14 +66,14 @@ const TeacherDetails = () => {
 
   const modifyTeacher = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/docenti/${id}`, {
+      const response = await fetch(`${apiUrl}/docenti/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          Image: image, // usa "Image" (maiuscola) in linea con lo schema
-          Name: teacher.Name, // usa "Name" (maiuscola)
-          Surname: teacher.Surname, // usa "Surname" (maiuscola)
-          Bio: bio, // usa "Bio" (maiuscola)
+          Image: image, // "Image" (maiuscola) in linea con lo schema
+          Name: teacher.Name, // "Name" (maiuscola)
+          Surname: teacher.Surname, // "Surname" (maiuscola)
+          Bio: bio, // "Bio" (maiuscola)
         }),
       });
       if (!response.ok) throw new Error("Si è verificato un errore");
@@ -94,7 +95,7 @@ const TeacherDetails = () => {
 
   const deleteTeacher = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/docenti/${id}`, {
+      const response = await fetch(`${apiUrl}/docenti/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) throw new Error("Si è verificato un errore");
@@ -132,6 +133,7 @@ const TeacherDetails = () => {
 
       <h1>Gestisci insegnante</h1>
       <Form>
+        
         {/* Campo per l'upload dell'immagine */}
         <Form.Group className="mb-3" controlId="formImage">
           <Form.Label>Immagine</Form.Label>

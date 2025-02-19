@@ -14,7 +14,6 @@ const Header = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
 
-    // Reindirizza l'utente alla pagina di login
     navigate("/login");
   };
 

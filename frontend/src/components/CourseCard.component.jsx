@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, ListGroup, Button } from "react-bootstrap";
-import "../Style/courseCard.css";
 import { Link } from "react-router";
+import "../Style/cards.css";
 
 const CourseCard = ({
   _id,

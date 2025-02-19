@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Container, Carousel } from "react-bootstrap";
-import "../Style/hero.css";
+import "../Style/generalStyle.css";
+
+const apiUrl = process.env.REACT_APP_API_URI
 
 const TestimonialsCarousel = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -19,7 +21,7 @@ const TestimonialsCarousel = () => {
   }
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/testimonials")
+    fetch(`${apiUrl}/testimonials`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Errore nel caricamento dei testimonial");
@@ -48,7 +50,7 @@ const TestimonialsCarousel = () => {
   return (
     <Container className="my-5">
       <h2 className="text-center mb-4">I nostri allievi dicono...</h2>
-      <Carousel data-bs-theme="dark">
+      <Carousel data-bs-theme="dark" controls={false}>
         {testimonialElements.map((group, index) => (
           <Carousel.Item key={index}>
             <div className="d-flex justify-content-center">

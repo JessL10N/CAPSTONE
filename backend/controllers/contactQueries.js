@@ -1,17 +1,17 @@
 import Contact from "../models/contactModel.js";
 
-const postContact = async (req, res, next) => {
+const postContact = async (req, res) => {
     try{
         const { name, email, subject, message } = req.body;
         if (!name || !email || !subject || !message) {
             return res.status(400).json({ error: "Tutti i campi sono obbligatori." });
           }
       
-          // Crea un nuovo documento Contact
+          // Nuovo documento Contact
           const newContact = new Contact({ name, email, subject, message });
           await newContact.save();
       
-          // Rispondi con un messaggio di successo
+          // Messaggio di successo
           res.status(201).json({ message: "Messaggio inviato con successo!" });
         } catch (error) {
           console.error("Errore durante l'invio del messaggio:", error);

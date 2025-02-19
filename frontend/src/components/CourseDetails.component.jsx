@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Form, Button, Container, Modal, Alert } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router";
 
+const apiUrl = process.env.REACT_APP_API_URI
+
+
 const CourseDetails = () => {
+
 
   const { id } = useParams();
   const redirect = useNavigate();
@@ -21,16 +25,16 @@ const CourseDetails = () => {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/corsi/${id}`);
+        const response = await fetch(`${apiUrl}/corsi/${id}`);
         if (!response.ok) {
           redirect("/404");
           throw new Error("Si è verificato un problema");
         }
         const course = await response.json();
 
-        // Salva l'ID dell'insegnante oltre ai suoi dettagli
+        // Salva l'ID dell'insegnante + dettagli
         const teacherResponse = await fetch(
-          `http://localhost:3001/api/docenti/${course.teacher}`
+          `${apiUrl}/docenti/${course.teacher}`
         );
         if (!teacherResponse.ok)
           throw new Error(
@@ -56,7 +60,8 @@ const CourseDetails = () => {
     fetchCourse();
   }, [id, redirect]);
 
-  // Funzione per gestire l'upload dell'immagine
+  // Upload immagine
+
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -64,7 +69,7 @@ const CourseDetails = () => {
     formData.append("image", file);
 
     try {
-      const response = await fetch("http://localhost:3001/api/upload", {
+      const response = await fetch(`${apiUrl}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -72,7 +77,6 @@ const CourseDetails = () => {
         throw new Error("Errore durante l'upload");
       }
       const data = await response.json();
-      // Aggiorna lo stato dell'immagine con l'URL restituito
       setImage(data.url);
     } catch (error) {
       console.error("Upload error:", error);
@@ -81,7 +85,7 @@ const CourseDetails = () => {
 
   const modifyCourse = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/corsi/${id}`, {
+      const response = await fetch(`${apiUrl}/corsi/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -109,7 +113,7 @@ const CourseDetails = () => {
 
   const deleteCourse = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/corsi/${id}`, {
+      const response = await fetch(`${apiUrl}/corsi/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) throw new Error("Si è verificato un errore");
@@ -134,15 +138,16 @@ const CourseDetails = () => {
   };
 
   return (
-    <Container>
+    <Container fluid className="p-5">
 
       {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
-      <h1>Gestisci corso</h1>
+      <h1 className="m-5">Gestisci corso</h1>
       <Form>
+
         {/* Campo per l'upload dell'immagine */}
-        <Form.Group className="mb-3" controlId="formImage">
-          <Form.Label>Immagine</Form.Label>
+        <Form.Group className="m-3" controlId="formImage">
+          <Form.Label className="fw-semibold">Immagine</Form.Label>
           <Form.Control
             type="file"
             accept="image/*"
@@ -155,8 +160,8 @@ const CourseDetails = () => {
           )}
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formTitle">
-          <Form.Label>Titolo</Form.Label>
+        <Form.Group className="m-3" controlId="formTitle">
+          <Form.Label className="fw-semibold">Titolo</Form.Label>
           <Form.Control
             type="text"
             placeholder="Inserisci nuovo titolo"
@@ -165,8 +170,8 @@ const CourseDetails = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formTeacherName">
-          <Form.Label>Nome Insegnante</Form.Label>
+        <Form.Group className="m-3" controlId="formTeacherName">
+          <Form.Label className="fw-semibold">Nome Insegnante</Form.Label>
           <Form.Control
             type="text"
             placeholder="Inserisci il nome"
@@ -176,8 +181,8 @@ const CourseDetails = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formTeacherSurname">
-          <Form.Label>Cognome Insegnante</Form.Label>
+        <Form.Group className="m-3" controlId="formTeacherSurname">
+          <Form.Label className="fw-semibold">Cognome Insegnante</Form.Label>
           <Form.Control
             type="text"
             placeholder="Inserisci il cognome"
@@ -189,8 +194,8 @@ const CourseDetails = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formLevel">
-          <Form.Label>Livello</Form.Label>
+        <Form.Group className="m-3" controlId="formLevel">
+          <Form.Label className="fw-semibold">Livello</Form.Label>
           <Form.Control
             type="text"
             placeholder="Inserisci livello"
@@ -199,8 +204,8 @@ const CourseDetails = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formForm">
-          <Form.Label>Modalità</Form.Label>
+        <Form.Group className="m-3" controlId="formForm">
+          <Form.Label className="fw-semibold">Modalità</Form.Label>
           <Form.Control
             type="text"
             placeholder="Inserisci modalità"
@@ -209,8 +214,8 @@ const CourseDetails = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formDescription">
-          <Form.Label>Descrizione</Form.Label>
+        <Form.Group className="m-3" controlId="formDescription">
+          <Form.Label className="fw-semibold">Descrizione</Form.Label>
           <Form.Control
             type="text"
             placeholder="Inserisci descrizione"

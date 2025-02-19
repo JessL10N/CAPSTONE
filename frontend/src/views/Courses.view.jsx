@@ -3,6 +3,8 @@ import { Button, Container, Row, Col } from "react-bootstrap";
 import CourseCard from "../components/CourseCard.component";
 import "../Style/generalStyle.css"
 
+const apiUrl = process.env.REACT_APP_API_URI
+
 const Courses = () => {
 
   const role = localStorage.getItem("role");
@@ -13,7 +15,7 @@ const Courses = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/corsi");
+      const response = await fetch(`${apiUrl}/corsi`);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -35,7 +37,7 @@ const Courses = () => {
   }, []);
 
   return (
-    <Container fluid className="background-page pb-3">
+    <Container fluid className="background-page p-5">
       <div className="d-flex justify-content-between m-5">
         <h1>I nostri corsi</h1>
         {role === "admin" && (

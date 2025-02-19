@@ -3,6 +3,8 @@ import { Button, Container, Row, Col } from "react-bootstrap";
 import TeacherCard from "../components/TeacherCard.component";
 import "../Style/generalStyle.css";
 
+const apiUrl = process.env.REACT_APP_API_URI
+
 const Teachers = () => {
   const role = localStorage.getItem("role");
   const [teachers, setTeachers] = useState([]);
@@ -11,7 +13,7 @@ const Teachers = () => {
 
   const fetchTeachers = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/docenti");
+      const response = await fetch(`${apiUrl}/docenti`);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -36,7 +38,7 @@ const Teachers = () => {
   }, []);
 
   return (
-    <Container fluid className="background-page pb-3">
+    <Container fluid className="background-page p-5">
       {/* Su schermi piccoli: flex-column, su medi e superiori: flex-row */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-center m-5">
         <h1>Vieni a conoscere i nostri insegnanti...</h1>

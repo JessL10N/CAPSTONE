@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Form, Button, Container } from "react-bootstrap";
+import "../Style/generalStyle.css";
+
+const apiUrl = process.env.REACT_APP_API_URI
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user"); // Puoi dare la possibilità di scegliere il ruolo (admin/user)
+  const role = "user";
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -18,7 +22,7 @@ const Register = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3001/api/register", {
+      const response = await fetch(`${apiUrl}/registrati`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
@@ -33,48 +37,48 @@ const Register = () => {
       const data = await response.json();
       localStorage.setItem("token", data.token); // Salva il token nel localStorage
       localStorage.setItem("role", data.role); // Salva il ruolo
-      navigate("/"); // Reindirizza alla dashboard
+      navigate("/");
     } catch (error) {
       setError("Errore nella registrazione");
     }
   };
 
   return (
-    <div>
-      <h2>Registrati</h2>
+    <Container
+      fluid
+      className="d-flex flex-column min-vh-100 background-page p-5"
+    >
+      <h2 className="ms-0 m-5">Registrati</h2>
       {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formEmail">
+          <Form.Label className="fw-semibold">Indirizzo e-mail</Form.Label>
+          <Form.Control
             type="email"
+            placeholder="Enter email"
+            style={{ width: "40%" }}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formPassword">
+          <Form.Label className="fw-semibold">Password</Form.Label>
+          <Form.Control
             type="password"
+            placeholder="Password"
+            style={{ width: "40%" }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
-        <div>
-          <label>Ruolo:</label>
-          <select
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
-        </div>
-        <button type="submit">Registrati</button>
-      </form>
-    </div>
+        </Form.Group>
+        <Button className="mt-3" variant="secondary" type="submit">
+          Registrati
+        </Button>
+      </Form>
+    </Container>
   );
 };
 
