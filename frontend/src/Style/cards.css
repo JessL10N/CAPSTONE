@@ -22,7 +22,7 @@
     object-fit: cover;
   }
   
-  @media (max-width: 992px) {  /* Schermi medi */
+  @media (max-width: 991px) {  /* Schermi medi */
     .teacher-card {
       height: 840px;
     }
