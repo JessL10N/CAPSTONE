@@ -44,7 +44,7 @@ const CourseCard = ({
         </ListGroup>
         <Card.Body className="d-flex justify-content-between"
         style={{ height: "12%" }}>
-          <Card.Link href="/contattaci">Prenota il tuo posto</Card.Link>
+          <Button className="fw-semibold align-self-center" href="/contattaci" variant="secondary">Prenota il tuo posto</Button>
           {role === "admin" && (
             <Link to={`/corsi/${_id}`}>
               <Button variant="secondary">Gestisci Corso</Button>

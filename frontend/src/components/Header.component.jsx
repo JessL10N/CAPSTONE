@@ -30,7 +30,9 @@ const Header = () => {
             <Nav.Link href="/corsi" className="m-auto">Corsi</Nav.Link>
             <Nav.Link href="/docenti" className="m-auto">Chi siamo</Nav.Link>
             <Nav.Link href="/contattaci" className="m-auto">Contattaci</Nav.Link>
+            </Nav>
             {/* Se l'utente è loggato, mostra il bottone di logout */}
+            <Nav className="ms-auto">
             {isLoggedIn ? (
               <Nav.Link>
                 <Button variant="outline-danger" onClick={handleLogout} className="align-self-end">
@@ -38,10 +40,13 @@ const Header = () => {
                 </Button>
               </Nav.Link>
             ) : (
-              // Se l'utente non è loggato, mostra il link di login
-              <Nav.Link href="/login">Login</Nav.Link>
+              // Se l'utente non è loggato, mostra il link di login e registrazione
+              <>
+              <Button href="/login" variant="secondary" className="me-2">Accedi</Button>
+              <Button href="/registrati" variant="secondary">Registrati</Button>
+              </>
             )}
-          </Nav>
+            </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

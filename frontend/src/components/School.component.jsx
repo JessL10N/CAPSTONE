@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Container, Row, Image } from "react-bootstrap";
 import { Link } from "react-router";
-import "../Style/generalStyle.css"
+import "../Style/generalStyle.css";
 
 const School = () => {
   return (
@@ -83,8 +83,9 @@ const School = () => {
                   , capaci di guidarti con passione e attenzione.
                 </li>
                 <li className="mt-2">
+                  Un{" "}
                   <span className="fw-bold">
-                    Un ambiente accogliente e rilassante
+                    ambiente accogliente e rilassante
                   </span>
                   , perfetto per staccare dalla frenesia quotidiana.
                 </li>
@@ -93,7 +94,7 @@ const School = () => {
                   principianti ai più esperti, con percorsi personalizzati.
                 </li>
                 <li className="mt-2">
-                  <span className="fw-bold">Un approccio olistico</span>, che
+                  Un <span className="fw-bold">approccio olistico</span>, che
                   unisce movimento, respirazione e meditazione.
                 </li>
               </ul>

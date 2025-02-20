@@ -40,7 +40,7 @@ const Login = () => {
       fluid
       className="d-flex flex-column min-vh-100 background-page p-5"
     >
-      <h2 className="ms-0 m-5">Login</h2>
+      <h2 className="ms-0 m-5">Accedi</h2>
 
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formEmail">
@@ -68,7 +68,7 @@ const Login = () => {
         </Form.Group>
 
         <Button variant="secondary" type="submit" className="mt-3">
-          Submit
+          Invia
         </Button>
       </Form>
       <Alert

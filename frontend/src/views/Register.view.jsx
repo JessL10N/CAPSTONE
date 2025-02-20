@@ -56,7 +56,7 @@ const Register = () => {
           <Form.Control
             type="email"
             placeholder="Enter email"
-            style={{ width: "40%" }}
+            style={{ width: "30%" }}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -68,7 +68,7 @@ const Register = () => {
           <Form.Control
             type="password"
             placeholder="Password"
-            style={{ width: "40%" }}
+            style={{ width: "30%" }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

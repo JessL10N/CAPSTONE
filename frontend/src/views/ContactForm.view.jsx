@@ -93,6 +93,7 @@ const ContactForm = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              style={{ width: "40%" }}
             />
             <Form.Control.Feedback type="invalid">
               Per favore inserisci il tuo nome.
@@ -108,6 +109,7 @@ const ContactForm = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              style={{ width: "40%" }}
             />
             <Form.Control.Feedback type="invalid">
               Per favore inserisci un'email valida.
@@ -123,6 +125,7 @@ const ContactForm = () => {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
+              style={{ width: "40%" }}
             />
             <Form.Control.Feedback type="invalid">
               Per favore inserisci un oggetto.
@@ -139,6 +142,7 @@ const ContactForm = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
+              style={{ width: "40%" }}
             />
             <Form.Control.Feedback type="invalid">
               Per favore inserisci il tuo messaggio.
@@ -150,8 +154,8 @@ const ContactForm = () => {
           </Button>
         </Form>
       )}
-      <div className="d-flex flex-column m-5 align-items-start">
-        <h3>In alternativa puoi contattarci direttamente:</h3>
+      <Alert className="alert-dark d-flex flex-column m-5 align-items-start">
+        <h3>Se preferisci puoi contattarci direttamente:</h3>
         <p className="m-3 fw-bold">
           <span className="m-2"><svg
             xmlns="http://www.w3.org/2000/svg"
@@ -195,7 +199,7 @@ const ContactForm = () => {
           </span>
           : 320 7654321
         </p>
-        </div>
+        </Alert>
     </Container>
   );
 };
