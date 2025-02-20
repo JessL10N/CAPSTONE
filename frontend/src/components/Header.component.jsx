@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useNavigate } from "react-router";
+import "../Style/generalStyle.css"
 
 const Header = () => {
   const navigate = useNavigate();
@@ -34,16 +35,16 @@ const Header = () => {
             {/* Se l'utente è loggato, mostra il bottone di logout */}
             <Nav className="ms-auto">
             {isLoggedIn ? (
-              <Nav.Link>
-                <Button variant="outline-danger" onClick={handleLogout} className="align-self-end">
+              <Nav.Link className="logout-btn-container">
+                <Button variant="outline-danger" onClick={handleLogout}>
                   Logout
                 </Button>
               </Nav.Link>
             ) : (
               // Se l'utente non è loggato, mostra il link di login e registrazione
               <>
-              <Button href="/login" variant="secondary" className="me-2">Accedi</Button>
-              <Button href="/registrati" variant="secondary">Registrati</Button>
+              <Button href="/login" variant="secondary" className="responsive-btn" >Accedi</Button>
+              <Button href="/registrati" variant="secondary" className="responsive-btn">Registrati</Button>
               </>
             )}
             </Nav>

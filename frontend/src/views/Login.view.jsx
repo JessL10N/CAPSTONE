@@ -72,17 +72,15 @@ const Login = () => {
         </Button>
       </Form>
       <Alert
-        className="ms-0 m-5 alert-dark d-flex justify-content-center align-items-center justify-content-around"
-        style={{ width: "40%" }}
+        className="register-alert ms-0 m-5 alert-dark d-flex justify-content-center align-items-center justify-content-around"
       >
         <p className="fw-semibold fs-5">Non hai ancora un account?</p>
         <Button
           a
           href="/registrati"
-          className="m-3 fw-semibold"
+          className="fw-semibold ms-3"
           variant="secondary"
           type="submit"
-          style={{ width: "20%" }}
         >
           Registrati
         </Button>

@@ -24,4 +24,38 @@
     position: absolute;
     bottom: -50px;
 }
+
+@media (max-width: 991px){
+  .logout-btn-container{
+    align-self: center !important;
+  }
+}
+
+@media (min-width: 992px){
+  .logout-btn-container{
+    align-self: end;
+  }
+}
+
+@media (max-width: 991px){
+  .responsive-btn{
+    width: 20%;
+    margin-right: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    align-self: center;
+  }
+}
+
+@media (min-width: 992px){
+  .responsive-btn{
+    margin-right: 1em;
+  }
+}
+
+@media (min-width: 849px){
+  .register-alert{
+    width: 40%;
+  }
+}
   

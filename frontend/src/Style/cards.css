@@ -30,10 +30,21 @@
       height: 508px;
     }
   }
-  
-  @media (max-width: 768px) {  /* Schermi piccoli */
+
+  @media (min-width: 768px) and (max-width: 843px){
+
     .teacher-card {
-      height: 820px;
+      height: 840px;
+    }
+
+    .teacher-card-img {
+      height: 508px;
+    }
+  }
+  
+  @media (max-width: 767px) {  /* Schermi piccoli fino a 768px*/
+    .teacher-card {
+      height: 840px;
     }
     .teacher-card-img {
       height: 580px;
