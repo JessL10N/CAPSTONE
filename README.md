@@ -7,6 +7,11 @@ Inoltre, gli amministratori possono gestire, con un semplice click, sia i corsi 
 
 🧘🧘🧘
 
+## 🚀 Live Demo
+
+Il progetto è online e accessibile qui:  
+🔗 [Visita il sito](https://capstone-jessica-frainos-projects.vercel.app)
+
 ## Tecnologie Utilizzate 🛠 
 
 ### Frontend
