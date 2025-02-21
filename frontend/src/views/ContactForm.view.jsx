@@ -58,8 +58,8 @@ const ContactForm = () => {
   };
 
   return (
-    <Container fluid className="d-flex flex-column min-vh-100 p-5 align-items-center background-page">
-      <h1 className="mb-5">Contattaci</h1>
+    <Container fluid className="d-flex flex-column min-vh-100 align-items-center background-page container-padding">
+      <h1 className="m-5">Contattaci</h1>
 
       {submittedMessage && (
         <Alert
@@ -86,14 +86,13 @@ const ContactForm = () => {
         >
           <Form.Group controlId="contactFormName" className="mb-3">
             <Form.Label className="fw-semibold">Nome</Form.Label>
-            <Form.Control
+            <Form.Control className="form-input-field"
               required
               type="text"
               placeholder="Inserisci il tuo nome"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              style={{ width: "40%" }}
             />
             <Form.Control.Feedback type="invalid">
               Per favore inserisci il tuo nome.
@@ -102,14 +101,13 @@ const ContactForm = () => {
 
           <Form.Group controlId="contactFormEmail" className="mb-3">
             <Form.Label className="fw-semibold">Email</Form.Label>
-            <Form.Control
+            <Form.Control className="form-input-field"
               required
               type="email"
               placeholder="Inserisci la tua email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              style={{ width: "40%" }}
             />
             <Form.Control.Feedback type="invalid">
               Per favore inserisci un'email valida.
@@ -118,14 +116,13 @@ const ContactForm = () => {
 
           <Form.Group controlId="contactFormSubject" className="mb-3">
             <Form.Label className="fw-semibold">Oggetto</Form.Label>
-            <Form.Control
+            <Form.Control className="form-input-field"
               required
               type="text"
               placeholder="Oggetto del messaggio"
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              style={{ width: "40%" }}
             />
             <Form.Control.Feedback type="invalid">
               Per favore inserisci un oggetto.
@@ -134,7 +131,7 @@ const ContactForm = () => {
 
           <Form.Group controlId="contactFormMessage" className="mb-3">
             <Form.Label className="fw-semibold">Messaggio</Form.Label>
-            <Form.Control
+            <Form.Control className="form-input-field"
               required
               as="textarea"
               rows={5}
@@ -142,7 +139,6 @@ const ContactForm = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              style={{ width: "40%" }}
             />
             <Form.Control.Feedback type="invalid">
               Per favore inserisci il tuo messaggio.

@@ -42,12 +42,12 @@ const CourseCard = ({
             <strong>Formato:</strong> {form}
           </ListGroup.Item>
         </ListGroup>
-        <Card.Body className="d-flex justify-content-between align-items-center"
+        <Card.Body className="responsive-btn-container d-flex justify-content-between align-items-center"
         style={{ height: "12%" }}>
-          <Button className="fw-semibold align-self-center" href="/contattaci" variant="secondary">Prenota il tuo posto</Button>
+          <Button className="fw-semibold align-self-center mb-2" href="/contattaci" variant="secondary">Prenota il tuo posto</Button>
           {role === "admin" && (
             <Link to={`/corsi/${_id}`}>
-              <Button className="fw-semibold align-self-center" variant="secondary">Gestisci Corso</Button>
+              <Button className="fw-semibold align-self-center mb-2" variant="secondary">Gestisci Corso</Button>
             </Link>
           )}
         </Card.Body>

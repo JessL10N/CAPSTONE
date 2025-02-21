@@ -53,10 +53,9 @@ const Register = () => {
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formEmail">
           <Form.Label className="fw-semibold">Indirizzo e-mail</Form.Label>
-          <Form.Control
+          <Form.Control className="form-input-field"
             type="email"
-            placeholder="Enter email"
-            style={{ width: "30%" }}
+            placeholder="Inserisci email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -65,10 +64,9 @@ const Register = () => {
 
         <Form.Group className="mb-3" controlId="formPassword">
           <Form.Label className="fw-semibold">Password</Form.Label>
-          <Form.Control
+          <Form.Control className="form-input-field"
             type="password"
             placeholder="Password"
-            style={{ width: "30%" }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

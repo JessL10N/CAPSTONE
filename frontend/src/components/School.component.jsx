@@ -5,7 +5,7 @@ import "../Style/generalStyle.css";
 
 const School = () => {
   return (
-    <Container fluid className="background-page" style={{ padding: "6rem" }}>
+    <Container fluid className="background-page container-padding">
       <Row className="align-items-center m-5">
         <Col sm={12}>
           <section>

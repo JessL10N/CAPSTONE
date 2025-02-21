@@ -45,10 +45,9 @@ const Login = () => {
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formEmail">
           <Form.Label className="fw-semibold">Indirizzo e-mail</Form.Label>
-          <Form.Control
+          <Form.Control className="form-input-field"
             type="email"
-            placeholder="Enter email"
-            style={{ width: "40%" }}
+            placeholder="Inserisci email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -57,10 +56,9 @@ const Login = () => {
 
         <Form.Group className="mb-3" controlId="formPassword">
           <Form.Label className="fw-semibold">Password</Form.Label>
-          <Form.Control
+          <Form.Control className="form-input-field"
             type="password"
             placeholder="Password"
-            style={{ width: "40%" }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

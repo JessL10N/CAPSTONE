@@ -53,9 +53,32 @@
   }
 }
 
+@media (max-width: 541px){
+  .responsive-btn-container{
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 @media (min-width: 849px){
   .register-alert{
     width: 40%;
   }
 }
   
+@media (max-width: 737px){
+  .form-input-field{
+    width: 70%;
+  }
+}
+@media (min-width: 738px){
+  .form-input-field{
+    width: 40%;
+  }
+}
+
+@media (min-width: 992px){
+  .container-padding{
+    padding: 6rem;
+  }
+}

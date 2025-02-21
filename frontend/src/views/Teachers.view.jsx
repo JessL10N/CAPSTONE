@@ -38,7 +38,7 @@ const Teachers = () => {
   }, []);
 
   return (
-    <Container fluid className="background-page p-5">
+    <Container fluid className="background-page container-padding">
       {/* Su schermi piccoli: flex-column, su medi e superiori: flex-row */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-center m-5">
         <h1>Vieni a conoscere i nostri insegnanti...</h1>

@@ -37,8 +37,8 @@ const Courses = () => {
   }, []);
 
   return (
-    <Container fluid className="background-page p-5">
-      <div className="d-flex justify-content-between m-5">
+    <Container fluid className="background-page container-padding">
+      <div className="responsive-btn-container d-flex justify-content-between m-5">
         <h1>I nostri corsi</h1>
         {role === "admin" && (
         <Button variant="secondary" className="m-2" href="/corsi/new">
@@ -67,7 +67,7 @@ const Courses = () => {
         <Row className="m-3 g-3">
         {courses.length > 0 ? (
           courses.map((course) => (
-            <Col key={course._id} xs={12} md={6} lg={4}>
+            <Col key={course._id} xs={12} md={6} lg={6} xl={4}>
               <CourseCard {...course} />
             </Col>
           ))
