@@ -35,6 +35,10 @@
   .logout-btn-container{
     align-self: end;
   }
+
+  .responsive-btn{
+    margin-right: 1em;
+  }
 }
 
 @media (max-width: 991px){
@@ -47,9 +51,9 @@
   }
 }
 
-@media (min-width: 992px){
+@media (max-width: 447px){
   .responsive-btn{
-    margin-right: 1em;
+    width: 22%;
   }
 }
 
