@@ -1,25 +1,25 @@
-Password aggiornata per user1@example.com: kjz6tnsg
-Password aggiornata per user2@example.com: j189b5jl
-Password aggiornata per user3@example.com: u058hntt
-Password aggiornata per user4@example.com: crj93et3
-Password aggiornata per user5@example.com: xmn84jrb
-Password aggiornata per user6@example.com: b85vkp6l
-Password aggiornata per user7@example.com: f2my1ykn
-Password aggiornata per user8@example.com: a22nqu6p
-Password aggiornata per user9@example.com: ejgazmje
-Password aggiornata per user10@example.com: 2mczsdsa
-Password aggiornata per user11@example.com: 357dgmn2
-Password aggiornata per user12@example.com: 92a7cs28
-Password aggiornata per user13@example.com: 4fqafzzm
-Password aggiornata per user14@example.com: d9bju6o4
-Password aggiornata per user15@example.com: bxwrr338
-Password aggiornata per user16@example.com: xbhwjyrg
-Password aggiornata per user17@example.com: oh35u2rb
-Password aggiornata per user18@example.com: 17aug5u1
-Password aggiornata per user19@example.com: v02tk5gi
-Password aggiornata per user20@example.com: 7p1h3aa8
-Password aggiornata per user21@example.com: oanjhweb
-Password aggiornata per user22@example.com: qwcm8l9q
-Password aggiornata per user23@example.com: mhb8sj1s
-Password aggiornata per user24@example.com: v8b6y7ms
-Password aggiornata per user25@example.com: aykp660n
+Password aggiornata per user1@example.com: kjz6tnsg > ADMIN
+Password aggiornata per user2@example.com: j189b5jl > ADMIN
+Password aggiornata per user3@example.com: u058hntt > ADMIN
+Password aggiornata per user4@example.com: crj93et3 > ADMIN
+Password aggiornata per user5@example.com: xmn84jrb > ADMIN
+Password aggiornata per user6@example.com: b85vkp6l > USER
+Password aggiornata per user7@example.com: f2my1ykn > USER
+Password aggiornata per user8@example.com: a22nqu6p > USER
+Password aggiornata per user9@example.com: ejgazmje > USER
+Password aggiornata per user10@example.com: 2mczsdsa > USER
+Password aggiornata per user11@example.com: 357dgmn2 > USER
+Password aggiornata per user12@example.com: 92a7cs28 > USER
+Password aggiornata per user13@example.com: 4fqafzzm > USER
+Password aggiornata per user14@example.com: d9bju6o4 > USER
+Password aggiornata per user15@example.com: bxwrr338 > USER
+Password aggiornata per user16@example.com: xbhwjyrg > USER
+Password aggiornata per user17@example.com: oh35u2rb > USER
+Password aggiornata per user18@example.com: 17aug5u1 > USER
+Password aggiornata per user19@example.com: v02tk5gi > USER
+Password aggiornata per user20@example.com: 7p1h3aa8 > USER
+Password aggiornata per user21@example.com: oanjhweb > USER
+Password aggiornata per user22@example.com: qwcm8l9q > USER
+Password aggiornata per user23@example.com: mhb8sj1s > USER
+Password aggiornata per user24@example.com: v8b6y7ms > USER
+Password aggiornata per user25@example.com: aykp660n > USER
